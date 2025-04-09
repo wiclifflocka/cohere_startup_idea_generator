@@ -5,13 +5,12 @@ import textwrap
 import cohere
 import streamlit as st
 
-from main import cohere_client
 from generate_idea import generate_idea
 from generate_name import generate_name 
 
 # Set up Cohere client
-# co = cohere.ClientV2("HhzJlm3RZOlFVqbRQcDUrkKQZsDcdrOp7dnlWSBS")
-co = cohere_client()
+cohere_api = os.environ.get('COHERE_API', None)
+co = cohere.ClientV2(cohere_api)
 
 
 st.title("🚀 Startup Idea Generator")

@@ -5,12 +5,10 @@ import textwrap
 import cohere
 import streamlit as st
 
-from main import cohere_client
-# from generate_idea import generate_idea
 
 # Set up Cohere client
-# co = cohere.ClientV2("HhzJlm3RZOlFVqbRQcDUrkKQZsDcdrOp7dnlWSBS")
-co = cohere_client()
+cohere_api = os.environ.get('COHERE_API', None)
+co = cohere.ClientV2(cohere_api)
 
 
 def generate_name(idea, temperature):
@@ -41,11 +39,3 @@ Startup Name:"""
     )
 
     return response.message.content[0].text
-
-
-# if __name__ == "__main__":
-#     while True:
-#         response = generate_idea(input("Enter industry: "))
-#         name = generate_name(response)
-#         print(f"Idea Name : {name}\n\nIdea: {response}")
-#         print("*****************************\n")
